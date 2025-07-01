@@ -17,6 +17,19 @@ This project focuses on cleaning, analyzing, and visualizing banking and loan-re
 
 ---
 
+## 🗃️ Dataset Overview
+The dataset is composed of 5 relational tables:
+
+| Table Name          | Description                                                        | Row Count |
+| ------------------- | ------------------------------------------------------------------ | --------- |
+| `customers`         | Customer demographics: name, contact, DOB, location, occupation    | 2,000     |
+| `accounts`          | Bank accounts linked to customers with type and balance            | 2,000     |
+| `transactions`      | Transaction records including type, amount, merchant, and category | 25,000    |
+| `loan_applications` | Loan applications with amount, status, type, and timestamps        | 1,895     |
+| `credit_scores`     | Customer credit scores with timestamp                              | 4,983     |
+
+--
+
 ## 🧹 Data Cleaning (SQL)
 
 Each table was cleaned with the following steps:
