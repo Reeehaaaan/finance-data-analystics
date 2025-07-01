@@ -68,7 +68,7 @@ GROUP BY transaction_status
 
 SELECT 
 CASE 
-	WHEN score < 580 THEN 'Poor'
+    WHEN score < 580 THEN 'Poor'
     WHEN score BETWEEN 580 AND 699 THEN 'Fair'
     WHEN score BETWEEN 670 AND 739 THEN 'Good'
     WHEN score BETWEEN 740 AND 799 THEN 'Very Good'
@@ -90,19 +90,19 @@ ORDER BY approval_rate DESC
 WITH customer_total AS 
 (
 	SELECT c.customer_id, c.name, SUM(t.amount) AS total_spent
-    FROM clean_customers AS c
-	JOIN clean_accounts AS ca 
+    	FROM clean_customers AS c
+ 	JOIN clean_accounts AS ca 
 		ON c.customer_id = ca.customer_id
 	JOIN clean_transactions AS t 
 		ON ca.account_id = t.account_id
-    GROUP BY c.customer_id, c.name
+        GROUP BY c.customer_id, c.name
 ),
 latest_transaction AS 
 (
 	SELECT c.customer_id, t.transaction_date, t.amount AS latest_transac_amount,
-    ROW_NUMBER() OVER (PARTITION BY customer_id ORDER BY transaction_date DESC) AS rn
-    FROM clean_customers AS c
-    JOIN clean_accounts AS ca
+    	ROW_NUMBER() OVER (PARTITION BY customer_id ORDER BY transaction_date DESC) AS rn
+    	FROM clean_customers AS c
+    	JOIN clean_accounts AS ca
 		ON c.customer_id = ca.customer_id
 	JOIN clean_transactions AS t
 		ON ca.account_id = t.account_id
@@ -110,7 +110,7 @@ latest_transaction AS
 average_spent AS
 (
 	SELECT ROUND(AVG(total_spent),2) AS avg_total_spent
-    FROM customer_total
+   	 FROM customer_total
 )
 SELECT ct.customer_id,ct.name,ct.total_spent,lt.latest_transac_amount,asp.avg_total_spent
 FROM customer_total as ct
@@ -119,7 +119,7 @@ JOIN latest_transaction AS lt
 JOIN average_spent AS asp
 	ON 1=1 
 WHERE (ct.total_spent - lt.latest_transac_amount) < asp.avg_total_spent
-  AND ct.total_spent >= asp.avg_total_spent
+AND ct.total_spent >= asp.avg_total_spent
 ORDER BY ct.total_spent DESC;
 
 
@@ -190,10 +190,10 @@ ORDER BY month DESC
 
 SELECT c.customer_id, name,SUM(amount) AS total_spending,
 CASE 
-	WHEN SUM(amount) < 5000 THEN 'Low'
-    WHEN SUM(amount) BETWEEN 5000 AND 25000 THEN 'Medium'
-    WHEN SUM(amount) BETWEEN 25001 AND 75000 THEN 'High'
-    ELSE 'Very High'
+     WHEN SUM(amount) < 5000 THEN 'Low'
+     WHEN SUM(amount) BETWEEN 5000 AND 25000 THEN 'Medium'
+     WHEN SUM(amount) BETWEEN 25001 AND 75000 THEN 'High'
+     ELSE 'Very High'
 END AS spending_status   
 FROM clean_customers AS c
 JOIN clean_accounts AS a
