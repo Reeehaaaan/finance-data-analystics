@@ -5,7 +5,15 @@ This project focuses on cleaning, analyzing, and visualizing banking and loan-re
 ---
 
 ## 📁 Project Structure
-
+finance-data-insights/
+│
+├── data/ # Raw messy data (CSV)
+├── cleaned_data/ # Cleaned data after transformation
+├── query/ # Main SQL cleaning and analysis queries
+├── schema/ # SQL schema for table creation
+├── script/ # Python scripts (data gen, viz, CSV export)
+├── assets/ # ER diagrams, screenshots, charts
+└── README.md # You're here!
 ---
 
 ## 🧪 Data Generation & Import Notes
