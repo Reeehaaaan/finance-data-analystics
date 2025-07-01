@@ -28,7 +28,7 @@ The dataset is composed of 5 relational tables:
 | `loan_applications` | Loan applications with amount, status, type, and timestamps        | 1,895     |
 | `credit_scores`     | Customer credit scores with timestamp                              | 4,983     |
 
---
+---
 
 ## 🧹 Data Cleaning (SQL)
 
